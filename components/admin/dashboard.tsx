@@ -5,9 +5,10 @@ import { useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { AdminOverview } from "./overview"
-import { StockManagement } from "./stock-management"
-import { OrderManagement } from "./order-management"
-import { Financial } from "./financial"
+import MerchantsManagement from "./merchants-management"
+import ProductsManagement from "./products-management"
+import FinancialSettlement from "./financial-settlement"
+import ReverseLogistics from "./reverse-logistics"
 
 export function AdminDashboard() {
   const router = useRouter()
@@ -44,27 +45,32 @@ export function AdminDashboard() {
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Tabs Navigation */}
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-          <TabsList className="grid w-full grid-cols-4 mb-8">
+          <TabsList className="grid w-full grid-cols-7 mb-8">
             <TabsTrigger value="overview">Visão Geral</TabsTrigger>
-            <TabsTrigger value="estoque">Estoque</TabsTrigger>
-            <TabsTrigger value="pedidos">Pedidos</TabsTrigger>
-            <TabsTrigger value="financeiro">Financeiro</TabsTrigger>
+            <TabsTrigger value="parceiros">Parceiros</TabsTrigger>
+            <TabsTrigger value="produtos">Produtos</TabsTrigger>
+            <TabsTrigger value="acerto">Acertos</TabsTrigger>
+            <TabsTrigger value="reversa">Reversas</TabsTrigger>
           </TabsList>
 
           <TabsContent value="overview">
             <AdminOverview />
           </TabsContent>
 
-          <TabsContent value="estoque">
-            <StockManagement />
+          <TabsContent value="parceiros">
+            <MerchantsManagement />
           </TabsContent>
 
-          <TabsContent value="pedidos">
-            <OrderManagement />
+          <TabsContent value="produtos">
+            <ProductsManagement />
           </TabsContent>
 
-          <TabsContent value="financeiro">
-            <Financial />
+          <TabsContent value="acerto">
+            <FinancialSettlement />
+          </TabsContent>
+
+          <TabsContent value="reversa">
+            <ReverseLogistics />
           </TabsContent>
         </Tabs>
       </main>
